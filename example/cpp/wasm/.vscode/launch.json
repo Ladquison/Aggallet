@@ -4,7 +4,15 @@
     {
       "type": "chrome",
       "request": "attach",
-      "name": "Attach to Chrome (WASM)",
+      "name": "Attach to Chrome (Angular)",
+      "port": 9222,
+      "webRoot": "${workspaceFolder}/../app_angular",
+      "sourceMaps": true
+    },
+    {
+      "type": "chrome",
+      "request": "attach",
+      "name": "Attach to Chrome (Vite)",
       "port": 9222,
       "webRoot": "${workspaceFolder}/../app_vite",
       "sourceMaps": true
