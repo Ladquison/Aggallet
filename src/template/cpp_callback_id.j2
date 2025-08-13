@@ -1,0 +1,21 @@
+/*
+ * This source code is automatically generated.  
+ * To make changes, please update the YAML file and run the code generation tool.
+ */
+
+#pragma once
+
+enum class {{ enum_name }} : uint16_t {
+{% for func in functions %}
+    /*
+    {{ " " }}* @brief {{ func.comment }}
+    {% for arg in func.args -%}
+    {{ " " }}* @param {{ arg.name }} {{ get_type(arg.type) }} value. {{ arg.comment }}
+    {% endfor -%}
+    {% if func.return_info.type != "void" -%}
+    {{ " " }}* @return {{ func.return_info.comment }}
+    {% endif -%}
+    {{ " " }}*/
+    {{ func.name | upper }} = {{ "0x%04X" | format(func.id) }},
+{% endfor -%}
+};

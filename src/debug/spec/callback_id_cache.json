@@ -1,0 +1,4 @@
+{
+  "call()": "0x0001",
+  "send_parameters(bool,int,string)": "0x0002"
+}

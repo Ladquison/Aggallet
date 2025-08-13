@@ -1,0 +1,13 @@
+functions:
+  - name: call # callback sample call
+    return: void
+
+  - name: send_parameters # callback sample send parameters
+    args:
+      - name: arg1 # argument bool
+        type: bool
+      - name: arg2 # argument int
+        type: int
+      - name: arg3 # argument string
+        type: string
+    return: void

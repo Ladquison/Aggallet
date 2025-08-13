@@ -1,0 +1,6 @@
+void: void
+bool: bool
+int: int
+float: float
+string: std::string
+function: emscripten::val

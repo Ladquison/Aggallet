@@ -1,0 +1,18 @@
+types:
+  - name: void
+    default: null
+
+  - name: bool
+    default: "false"
+
+  - name: int
+    default: 0
+
+  - name: float
+    default: 0
+
+  - name: string
+    default: '""'
+
+  - name: function
+    default: null

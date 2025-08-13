@@ -1,0 +1,17 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python Debugger",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/armoron.py",
+            "args": [
+                "-o", "${workspaceFolder}/debug/output",
+                "-s", "${workspaceFolder}/debug/spec",
+                "-c"
+            ],
+            "console": "integratedTerminal"
+        }
+    ]
+}

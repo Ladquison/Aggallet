@@ -1,0 +1,65 @@
+/*
+ * This source code is automatically generated.  
+ * To make changes, please update the YAML file and run the code generation tool.
+ */
+
+#include <emscripten/bind.h>
+#include <emscripten/emscripten.h>
+
+#include "{{ import_module }}"
+
+{% if callback_enable -%}
+/*
+ * @brief add callback function
+ * @param id callback ID
+ * @param func callback function
+ * @return true: success, false: fail
+ */
+bool {{ callback_function_name_add }}(uint16_t id, emscripten::val func) {
+    return {{ call_prefix }}{{ callback_function_name_add }}(id, func);
+}
+
+/*
+ * @brief remove callback function
+ * @param id callback ID
+ * @return true: success, false: fail
+ */
+bool {{ callback_function_name_remove }}(uint16_t id) {
+    return {{ call_prefix }}{{ callback_function_name_remove }}(id);
+}
+
+{% endif -%}
+
+{% for func in functions -%}
+/*
+ * @brief {{ func.comment }}
+ {% for arg in func.args -%}
+ * @param {{ arg.name }} {{ arg.comment }}
+ {% endfor -%}
+ {% if func.return_info.type != "void" -%}
+ * @return {{ func.return_info.comment }}
+ {% endif -%}
+ */
+{{ get_type(func.return_info.type) }} {{ func.name }}(
+    {% for arg in func.args -%}
+    {{ get_type(arg.type) }} {{ arg.name }}{% if not loop.last -%}, {% endif -%}
+    {% endfor -%}
+) {
+    {% if func.return_info.type != "void" -%}return {% endif -%}{{ call_prefix }}{{ func.name }}(
+        {% for arg in func.args -%}
+        {{ arg.name }}{% if not loop.last -%}, {% endif -%}
+        {% endfor -%}
+    );
+}
+
+{% endfor -%}
+
+EMSCRIPTEN_BINDINGS({{ binding_name }}) {
+    {% if callback_enable -%}
+    emscripten::function("{{ callback_function_name_add }}", &{{ callback_function_name_add }});
+    emscripten::function("{{ callback_function_name_remove }}", &{{ callback_function_name_remove }});
+    {% endif -%}
+    {% for func in functions -%}
+    emscripten::function("{{ func.name }}", &{{ func.name }});
+    {% endfor -%}
+}

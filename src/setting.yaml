@@ -1,0 +1,31 @@
+module_name_wasm: "WASM" # name defined in WebAssembly module
+wasm_ext: "cpp" # extension of language used to implement WebAssembly
+
+type:
+  catalog: "type/catalog.yaml" # type information used in function specification
+  wasm: "type/cpp.yaml" # type name for language used to implement WebAssembly
+  ts: "type/ts.yaml" # type name for TypeScript
+
+callback:
+  file_name: "WasmCallbackId" # name of generated source files
+  template_wasm: "template/cpp_callback_id.j2" # Jinja2 template for generating WebAssembly source code
+  template_ts: "template/ts_callback_id.j2" # Jinja2 template for generating TypeScript source code
+  enum_name: "FUNCTION_ID" # name of enum that is written in callback definition
+  mapping_variable_name: "CallbackMap" # variable name in TypeScript used to implement mapping of callback function ID and type of function
+  function_name_add: "addCallback" # name of function that adds callback
+  function_name_remove: "removeCallback" # name of function that removes callback
+
+impl_wasm:
+  name: "WasmProvider" # name of module that implements functions provided by WebAssembly
+  template: "template/cpp_provider.j2" # Jinja2 template for generating WebAssembly source code
+  import_module: "AppWrapper.h" # module required to call wrapper functions
+  call_prefix: "AppWrapper::getInstance()." # wrapper function prefix
+  binding_name: "bind_module" # name of binding, this is used by Emscripten
+
+impl_ts:
+  name: "WasmWrapper" # name of TypeScript module that implements wrapper for WebAssembly function
+  template_wrapper: "template/ts_wrapper.j2" # Jinja2 template for generating wrapper source code
+  template_type_def: "template/ts_type_def.j2" # Jinja2 template for generating type definition source code
+  wasm_directory: "/wasm" # directory where .wasm file is located
+  wasm_js_directory: "wasm" # directory where .js file is located (if Emscripten is used, .js file generated)
+  type_def_directory: "types" # directory where .d.ts file is located

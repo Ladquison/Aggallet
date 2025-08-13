@@ -1,0 +1,17 @@
+/*
+ * This source code is automatically generated.  
+ * To make changes, please update the YAML file and run the code generation tool.
+ */
+
+declare module '{{ wasm_js_directory }}/{{ module_name_wasm }}.js' {
+    const {{ module_name_wasm }}: (param: dict) => Promise<{
+        {% if callback_enable -%}
+        {{ callback_function_name_add }}: (id: number, func: Function) => boolean;
+        {{ callback_function_name_remove }}: (id: number) => boolean;
+        {% endif -%}
+        {% for func in functions -%}
+        {{ func.name }}: ({% for arg in func.args %}{{ arg.name }}: {{ get_type(arg.type) }}{% if not loop.last %}, {% endif %}{% endfor %}) => {{ get_type(func.return_info.type) }};
+        {% endfor %}
+    }>;
+    export default {{ module_name_wasm }};
+}

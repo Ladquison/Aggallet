@@ -1,0 +1,97 @@
+/*
+ * This source code is automatically generated.  
+ * To make changes, please update the YAML file and run the code generation tool.
+ */
+
+import {{ module_name_wasm }} from '{{ wasm_js_directory }}/{{ module_name_wasm }}.js';
+{% if callback_enable -%}
+import { {{ mapping_variable_name }}, {{ callback_enum_name }} } from '{{ type_def_directory }}/{{ callback_file_name }}';
+{% endif %}
+export class {{ class_name }} {
+    private mInstance: Awaited<ReturnType<typeof {{ module_name_wasm }}>> | undefined = undefined;
+
+    /*
+     * @brief load WebAssembly
+     * @return promise for loading WebAssembly
+     */
+    public load(): Promise<void> {
+        if (this.mInstance) {
+            return Promise.resolve();
+        }
+        return {{ module_name_wasm }}({
+            locateFile: (fileName: string) => {
+                if (fileName.endsWith('.wasm')) {
+                    return `{{ wasm_directory }}/${fileName}`;
+                }
+                return fileName;
+            }
+        }).then((result) => {
+            this.mInstance = result;
+        });
+    }
+
+    {% if callback_enable -%}
+
+    /*
+     * @brief add callback function
+     * @param id callback ID
+     * @param func callback function
+     * @return true: success, false: fail
+     */
+    public {{ callback_function_name_add }}<ID extends keyof {{ mapping_variable_name }}>(id: ID, func: {{ mapping_variable_name }}[ID]): boolean {
+        let result: boolean = false;
+        if (this.mInstance) {
+            result = this.mInstance.{{ callback_function_name_add }}(id, func);
+        }
+        return result;
+    }
+
+    /*
+     * @brief remove callback function
+     * @param id callback ID
+     * @return true: success, false: fail
+     */
+    public {{ callback_function_name_remove }}(id: typeof {{ callback_enum_name }}[keyof typeof {{ callback_enum_name }}]): boolean {
+        let result: boolean = false;
+        if (this.mInstance) {
+            result = this.mInstance.{{ callback_function_name_remove }}(id);
+        }
+        return result;
+    }
+
+    {% endif -%}
+
+    {% for func in functions -%}
+    {% set return_type = get_type(func.return_info.type) -%}
+
+    /*
+     * @brief {{ func.comment }}
+    {% for arg in func.args -%}
+    {{ " " }}* @param {{ arg.name }} {{ arg.comment }}
+    {% endfor -%}
+    {% if func.return_info.type != "void" -%}
+    {{ " " }}* @return {{ func.return_info.comment }}
+    {% endif -%}
+    {{ " " }}*/
+    public {{ func.name }}(
+        {% for arg in func.args -%}
+        {{ arg.name }}: {{ get_type(arg.type) }}{% if not loop.last -%}, {% endif -%}
+        {% endfor -%}
+    ): {{ return_type }} {
+        {% if func.return_info.type != "void" -%}
+        let result: {{ return_type }} = {{ get_default(func.return_info.type) }};
+        {% endif -%}
+        if (this.mInstance) {
+            {% if func.return_info.type != "void" -%}result = {% endif -%}this.mInstance.{{ func.name }}(
+                {% for arg in func.args -%}
+                {{ arg.name }}{% if not loop.last -%}, {% endif -%}
+                {% endfor -%}
+            );
+        }
+        {% if func.return_info.type != "void" -%}
+        return result;
+        {% endif %}
+    }
+
+    {% endfor %}
+}

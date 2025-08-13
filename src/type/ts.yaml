@@ -1,0 +1,6 @@
+void: void
+bool: boolean
+int: number
+float: number
+string: string
+function: Function

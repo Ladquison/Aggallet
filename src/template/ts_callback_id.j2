@@ -1,0 +1,25 @@
+/*
+ * This source code is automatically generated.  
+ * To make changes, please update the YAML file and run the code generation tool.
+ */
+
+export const {{ enum_name }} = {
+    {% for func in functions %}
+    /*
+    {{ " " }}* @brief {{ func.comment }}
+    {% for arg in func.args -%}
+    {{ " " }}* @param {{ arg.name }} {{ arg.comment }}
+    {% endfor -%}
+    {% if func.return_info.type != "void" -%}
+    {{ " " }}* @return {{ func.return_info.comment }}
+    {% endif -%}
+    {{ " " }}*/
+    {{ func.name | upper }}: {{ "0x%04X" | format(func.id) }},
+    {% endfor %}
+} as const;
+
+export type {{ mapping_variable_name }} = {
+    {% for func in functions -%}
+    [{{ enum_name }}.{{ func.name | upper }}]: ({% for arg in func.args %}{{ arg.name }}: {{ get_type(arg.type) }}{% if not loop.last %}, {% endif %}{% endfor %}) => {{ get_type(func.return_info.type) }};
+    {% endfor %}
+};

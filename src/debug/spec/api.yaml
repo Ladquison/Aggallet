@@ -1,0 +1,27 @@
+functions:
+  - name: update # periodic update
+    return: void
+
+  - name: test_bool # bool test
+    args:
+      - name: arg1 # argument 1
+        type: bool
+    return: bool # return bool
+
+  - name: test_int_float # int float test
+    args:
+      - name: arg_int # argument int
+        type: int
+      - name: arg_float # argument float
+        type: float
+    return: float # return float
+
+  - name: test_bool_int_string # bool int string test
+    args:
+      - name: arg_1_bool # argument 1 bool
+        type: bool
+      - name: arg_2_int # argument 2 int
+        type: int
+      - name: arg_3_string # argument 3 string
+        type: string
+    return: string # return string
