@@ -18,10 +18,14 @@ target_include_directories(${TARGET_NAME} PRIVATE
 	"${EMSDK_PATH}/upstream/emscripten/cache/sysroot/include"
 )
 
-target_compile_options(${TARGET_NAME} PRIVATE -g)
+target_compile_options(${TARGET_NAME} PRIVATE
+	"-gsource-map" # this option is required to debug
+	"-O0" # this option is required to debug
+)
 
 target_link_options(${TARGET_NAME} PRIVATE
-	# "-g" # this option is required to debug
+	"-gsource-map" # this option is required to debug
+	"-O0" # this option is required to debug
 	"--bind"
 	"-sMODULARIZE=1"
 	"-sEXPORT_ES6=1"
@@ -43,9 +47,11 @@ install(FILES
 )
 install(FILES
 	"${CMAKE_BINARY_DIR}/${TARGET_NAME}.wasm"
+	"${CMAKE_BINARY_DIR}/${TARGET_NAME}.wasm.map"
 	DESTINATION "${APP_ANGULAR_PATH}/public/wasm"
 )
 install(FILES
 	"${CMAKE_BINARY_DIR}/${TARGET_NAME}.wasm"
+	"${CMAKE_BINARY_DIR}/${TARGET_NAME}.wasm.map"
 	DESTINATION "${APP_VITE_PATH}/public/wasm"
 )

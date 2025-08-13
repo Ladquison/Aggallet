@@ -6,7 +6,7 @@
       "request": "attach",
       "name": "Attach to Chrome (WASM)",
       "port": 9222,
-      "webRoot": "${workspaceFolder}/../app/wasm",
+      "webRoot": "${workspaceFolder}/../app_vite",
       "sourceMaps": true
     }
   ]
