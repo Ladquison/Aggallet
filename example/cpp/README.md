@@ -3,8 +3,6 @@
 This sample demonstrates how to build WebAssembly from C++ and integrate it into web applications.  
 Currently, only Windows is supported.
 
-You can run the sample as-is, but if you wish to modify the code, please follow the steps below.
-
 ---
 
 # Build Environment
@@ -15,7 +13,7 @@ To compile C++ source code into WebAssembly, set up the following tools:
  - [Emscripten SDK](https://github.com/emscripten-core/emsdk)
  - [Ninja](https://github.com/ninja-build/ninja/releases)
 
-Place the Emscripten SDK in the `3rd/emsdk` directory.  
+Place the Emscripten SDK in the `3rd/emsdk`.  
 For Ninja, simply place `ninja.exe` in `3rd/ninja`.
 
 Then run `wasm/setup.bat` to initialize the build environment using CMake.
@@ -35,7 +33,7 @@ After editing, run `generate_code.bat` to generate the corresponding C++ code.
 
 # Update C++ code
 
-Open the `cpp/wasm` folder in Visual Studio Code and implement your business logic.  
+Open the `cpp/wasm` in Visual Studio Code and implement your business logic.  
 The generated code will call methods in the `AppWrapper` class by name, but you must provide the actual implementation.
 
 Once editing is complete, press `Ctrl + Shift + B` to build the project.  

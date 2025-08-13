@@ -2,3 +2,7 @@
 3rd/ninja/*
 
 wasm/build/*
+
+WASM.js
+WASM.wasm
+WASM.wasm.map
