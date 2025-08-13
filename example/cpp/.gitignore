@@ -1,0 +1,4 @@
+3rd/emsdk/*
+3rd/ninja/*
+
+wasm/build/*

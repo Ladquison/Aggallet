@@ -1,0 +1,10 @@
+functions:
+  - name: respond_parameters # respond parametes sent from TypeScript side
+    args:
+      - name: onoff # toggle on/off
+        type: bool
+      - name: value # numeric value multiplied by 10 and casted to integer
+        type: int
+      - name: time # string with two current times sent from TypeScript side
+        type: string
+    return: void

@@ -1,0 +1,16 @@
+functions:
+  - name: update # periodic update
+    args:
+      - name: cycle # execution cycle (millisecond)
+        type: int
+    return: void
+    
+  - name: setParameters # set parameters
+    args:
+      - name: onoff # toggle on/off
+        type: bool
+      - name: value # numeric value
+        type: float
+      - name: time # current time
+        type: string
+    return: int # number of calls

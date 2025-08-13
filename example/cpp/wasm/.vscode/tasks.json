@@ -1,0 +1,40 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "CMake: Build",
+      "type": "shell",
+      "command": "cmake",
+      "args": [
+        "--build",
+        "${workspaceFolder}/build"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "CMake: Install",
+      "type": "shell",
+      "command": "cmake",
+      "args": [
+        "--install",
+        "${workspaceFolder}/build"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "CMake: Build and Install",
+      "dependsOn": [
+        "CMake: Build",
+        "CMake: Install"
+      ],
+      "dependsOrder": "sequence",
+      "type": "shell",
+      "command": "echo",
+      "args": ["Build and Install completed."],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    }
+  ]
+}

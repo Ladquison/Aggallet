@@ -1,0 +1,16 @@
+{
+	"version": 3,
+	"configurePresets": [
+		{
+			"name": "default",
+			"generator": "Ninja",
+			"binaryDir": "${sourceDir}/build",
+			"cacheVariables": {
+				"CMAKE_TOOLCHAIN_FILE": "${sourceDir}/../3rd/emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake",
+				"CMAKE_MAKE_PROGRAM": "${sourceDir}/../3rd/ninja/ninja.exe",
+				"CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+				"CMAKE_BUILD_TYPE": "Debug"
+			}
+		}
+	]
+}
