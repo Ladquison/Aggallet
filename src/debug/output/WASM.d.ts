@@ -3,8 +3,12 @@
  * To make changes, please update the YAML file and run the code generation tool.
  */
 
+type WASMOptions = {
+  locateFile?: (fileName: string) => string;
+};
+
 declare module 'wasm/WASM.js' {
-    const WASM: (param: dict) => Promise<{
+    const WASM: (options: WASMOptions) => Promise<{
         addCallback: (id: number, func: Function) => boolean;
         removeCallback: (id: number) => boolean;
         update: () => void;
