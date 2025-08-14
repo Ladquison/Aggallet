@@ -1,16 +1,16 @@
-# What is Armoron?
+# What is Aggallet?
 
-Armoron is a tool that automatically generates WebAssembly-related source code from function specifications defined in YAML files.  
-The name is a combination of "Armor" and "Iron", inspired by my favorite game character.
+Aggallet is a tool that automatically generates WebAssembly-related source code from function specifications defined in YAML files.  
+The name is a combination of "Aggressive" and "Gallet", inspired by my favorite game character.
 
 ---
 
 # Overview
 
  - Function specifications must be defined in YAML.
- - Armoron reads the YAML and generates TypeScript code and source code for the WebAssembly implementation language.
+ - Aggallet reads the YAML and generates TypeScript code and source code for the WebAssembly implementation language.
  - Regarding the WebAssembly language, currently only support C++ by building with Emscripten.
- - Armoron generates interface code based on the specifications; business logic must be implemented by the user.
+ - Aggallet generates interface code based on the specifications; business logic must be implemented by the user.
  
  ---
 
@@ -93,7 +93,7 @@ functions:
 
 7. To use callbacks, create `callback.yaml` in the same folder and write specifications in the same format as `api.yaml`.
 
-8. Run src/armoron.py with the following arguments:
+8. Run src/aggallet.py with the following arguments:
    - `-o`, `--output` : Path to the folder where generated files will be saved
    - `-s`, `--spec` : Path to the folder containing `api.yaml` and `callback.yaml`
    - `-c` : Optional. Required if using callbacks.
@@ -105,7 +105,7 @@ functions:
 # Example
 
 Practical usage examples are available in the [`example`](./example).  
-These demonstrate how to integrate Armoron with TypeScript and WebAssembly modules.
+These demonstrate how to integrate Aggallet with TypeScript and WebAssembly modules.
 
 ---
 

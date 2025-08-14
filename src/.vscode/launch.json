@@ -5,7 +5,7 @@
             "name": "Python Debugger",
             "type": "debugpy",
             "request": "launch",
-            "program": "${workspaceFolder}/armoron.py",
+            "program": "${workspaceFolder}/aggallet.py",
             "args": [
                 "-o", "${workspaceFolder}/debug/output",
                 "-s", "${workspaceFolder}/debug/spec",

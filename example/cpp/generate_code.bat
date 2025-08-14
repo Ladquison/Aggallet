@@ -5,7 +5,7 @@ setlocal
 set SPEC=%~dp0autogen\spec
 set OUTPUT=%~dp0autogen\output
 
-python ..\..\src\armoron.py -s %SPEC% -o %OUTPUT% -c
+python ..\..\src\aggallet.py -s %SPEC% -o %OUTPUT% -c
 
 move %OUTPUT%\*.cpp wasm\src\
 move %OUTPUT%\*.h wasm\src\
